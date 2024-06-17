@@ -1,34 +1,29 @@
 import sql from "mssql";
-import config  from '../config';
+import config from '../config';
 
-const dbSettings_Precenso2024 = {
-    user:     config.dbUser_Precenso2024,
-    password: config.dbPassword_Precenso2024,
-    server:   config.dbServer_Precenso2024,
-    database: config.dbDatabase_Precenso2024,
-    requestTimeout: 20000,
+const dbSettings = {
+    user: config.dbUser,
+    password: config.dbPassword,
+    server: config.dbServer,
+    database: config.dbDatabase,
+    requestTimeout: 20000, //timepo de respuesta para las consultas pesadas
     options: {
-         encrypt: false,
-         trustServerCertificate: true,
+        encrypt: false, // for azure | OJO => NO USAR EL TRUE
+        trustServerCertificate: true, // change to true for local dev / self-signed certs
     },
     pool: {
         max: 5000
     }
 };
 
- 
-export async function  getConnection() {
+
+export async function getConnection() {
     try {
-        const precenso2024 = new sql.ConnectionPool(dbSettings_Precenso2024);
-
-        await precenso2024.connect(dbSettings_Precenso2024);
-
+        const pool = new sql.ConnectionPool(dbSettings);
+        await pool.connect(dbSettings);
         const output = {
-            "precenso2024": precenso2024,
+            "pool": pool,
         };
-
-        //console.log(pool);
-        //console.log(output);
         return output;
     } catch (error) {
         console.log(error);

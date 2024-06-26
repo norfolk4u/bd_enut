@@ -4,6 +4,7 @@ import config from './config'
 /********************* ENUT 2024 *********************/
 /*** CAPACITACIÓN ***/
 import capacitacion_routes from './routes/ENUT2024/capacitacion.routes'
+import reclutamiento_routes from './routes/ENUT2024/reclutamiento.routes'
 
 
 const app = express();
@@ -23,6 +24,7 @@ app.use(express.json())
 /********************* ENUT 2024 *********************/
 /*** CAPACITACIÓN ***/
 app.use(capacitacion_routes)
+app.use(reclutamiento_routes)
 
 
 export default app

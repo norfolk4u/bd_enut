@@ -95,7 +95,7 @@ export const getIndicadorCoberturaProcesoSeleccion = async  ( req , res ) => {
 export const getIndicadorCoberturaCoberturaDiaria = async  ( req , res ) => {
     try {
         //getConnection_Reclutamiento();
-        const { visu,tipo_rpt,id_proyecto,nivel,id_cc,cod } = req.params;    
+        const { visu,tipo_rpt,id_proyecto,nivel,id_cc,cod,anio_f } = req.params;    
         const pool = await getConnection();
         const result = await pool.unete 
         .request() 
@@ -105,6 +105,7 @@ export const getIndicadorCoberturaCoberturaDiaria = async  ( req , res ) => {
         .input('NIVEL',nivel)  
         .input('ID_CC',id_cc) 
         .input('COD',cod) 
+        .input('ANIO_F',anio_f) 
         .execute(`[MNTR].[USP_V2_CONSEC_RRHH_COBERTURA_DIARIA]`);   
         res.json(result.recordsets[0]);   
         pool.unete.close();

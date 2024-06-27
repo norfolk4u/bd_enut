@@ -9,7 +9,7 @@ export const getCombos = async  ( req , res ) => {
         //getConnection_Reclutamiento();
         const {  id_proyecto,tipo_rpt,nivel,id_cc } = req.params;    
         const pool = await getConnection();
-        const result = await pool.pool2 
+        const result = await pool.unete 
         .request() 
         .input('ID_PROYECTO',id_proyecto) 
         .input('TIPO_RPT',tipo_rpt)  
@@ -17,7 +17,7 @@ export const getCombos = async  ( req , res ) => {
         .input('ID_CC',id_cc)    
         .execute(`[MNTR].[USP_V2_CONSEC_RRHH_LISTAR_CARGOS]`);   
         res.json(result.recordsets[0]);   
-        pool.pool2.close();
+        pool.unete.close();
     } catch (error) {
         res.status(500)
         res.send(error.message);
@@ -29,7 +29,7 @@ export const getCombosSegmentacion = async  ( req , res ) => {
         //getConnection_Reclutamiento();
         const {  visu,tipo_rpt,nivel,id_proyecto,id_cc,cod } = req.params;    
         const pool = await getConnection();
-        const result = await pool.pool2 
+        const result = await pool.unete 
         .request() 
         .input('VISUALIZACION',visu) 
         .input('TIPO_RPT',tipo_rpt)
@@ -39,7 +39,7 @@ export const getCombosSegmentacion = async  ( req , res ) => {
         .input('COD',cod)     
         .execute(`[MNTR].[USP_V2_CONSEC_RRHH_LISTAR_SEGMENTACION]`);   
         res.json(result.recordsets[0]);   
-        pool.pool2.close();
+        pool.unete.close();
     } catch (error) {
         res.status(500)
         res.send(error.message);
@@ -52,7 +52,7 @@ export const getIndicadorCoberturaProcesoReclutamiento = async  ( req , res ) =>
         //getConnection_Reclutamiento();
         const { visu,tipo_rpt,id_proyecto,nivel,id_cc,cod,sub_id_cc } = req.params;    
         const pool = await getConnection();
-        const result = await pool.pool2 
+        const result = await pool.unete 
         .request() 
         .input('VISUALIZACION',visu) 
         .input('TIPO_RPT',tipo_rpt)   
@@ -63,7 +63,7 @@ export const getIndicadorCoberturaProcesoReclutamiento = async  ( req , res ) =>
         .input('SUB_ID_CC',sub_id_cc) 
         .execute(`[MNTR].[USP_V2_CONSEC_RRHH_RESUMEN]`);   
         res.json(result.recordsets[0]);   
-        pool.pool2.close();
+        pool.unete.close();
     } catch (error) {
         res.status(500)
         res.send(error.message);
@@ -75,7 +75,7 @@ export const getIndicadorCoberturaProcesoSeleccion = async  ( req , res ) => {
         //getConnection_Reclutamiento();
         const { visu,tipo_rpt,id_proyecto,nivel,id_cc,cod } = req.params;    
         const pool = await getConnection();
-        const result = await pool.pool2 
+        const result = await pool.unete 
         .request() 
         .input('VISUALIZACION',visu) 
         .input('TIPO_RPT',tipo_rpt)   
@@ -85,7 +85,7 @@ export const getIndicadorCoberturaProcesoSeleccion = async  ( req , res ) => {
         .input('COD',cod) 
         .execute(`[MNTR].[USP_V2_CONSEC_RRHH_AVANCE]`);   
         res.json(result.recordsets[0]);   
-        pool.pool2.close();
+        pool.unete.close();
     } catch (error) {
         res.status(500)
         res.send(error.message);
@@ -97,7 +97,7 @@ export const getIndicadorCoberturaCoberturaDiaria = async  ( req , res ) => {
         //getConnection_Reclutamiento();
         const { visu,tipo_rpt,id_proyecto,nivel,id_cc,cod } = req.params;    
         const pool = await getConnection();
-        const result = await pool.pool2 
+        const result = await pool.unete 
         .request() 
         .input('VISUALIZACION',visu) 
         .input('TIPO_RPT',tipo_rpt)   
@@ -107,7 +107,7 @@ export const getIndicadorCoberturaCoberturaDiaria = async  ( req , res ) => {
         .input('COD',cod) 
         .execute(`[MNTR].[USP_V2_CONSEC_RRHH_COBERTURA_DIARIA]`);   
         res.json(result.recordsets[0]);   
-        pool.pool2.close();
+        pool.unete.close();
     } catch (error) {
         res.status(500)
         res.send(error.message);
@@ -120,7 +120,7 @@ export const getIndicadoresEstadisticasPerfilPostulante = async  ( req , res ) =
         //getConnection_Reclutamiento();
         const { visu,tipo_rpt,id_proyecto,nivel,id_cc,cod,condicion,sub_id_cc } = req.params;    
         const pool = await getConnection();
-        const result = await pool.pool2 
+        const result = await pool.unete 
         .request() 
         .input('VISUALIZACION',visu) 
         .input('TIPO_RPT',tipo_rpt)   
@@ -132,7 +132,7 @@ export const getIndicadoresEstadisticasPerfilPostulante = async  ( req , res ) =
         .input('SUB_ID_CC',sub_id_cc) 
         .execute(`[MNTR].[USP_V2_CONSEC_RRHH_LISTAR_PERFIL]`);   
         res.json(result.recordsets[0]);   
-        pool.pool2.close();
+        pool.unete.close();
     } catch (error) {
         res.status(500)
         res.send(error.message);
@@ -146,7 +146,7 @@ export const getIndicadoresEstadisticasPadronPostulante = async  ( req , res ) =
         const pool = await getConnection();
         var result2=[];
         var output;
-        const result = await pool.pool2
+        const result = await pool.unete
         .request() 
         .input('VISUALIZACION',visu)  
         .input('ID_PROYECTO',id_proyecto) 
@@ -157,7 +157,7 @@ export const getIndicadoresEstadisticasPadronPostulante = async  ( req , res ) =
         .input('CADENA',cadena) 
         .input('SUB_ID_CC',sub_id_cc) 
         .execute(`[MNTR].[USP_V2_CONSEC_RRHH_PADRON_POSTULANTES]`);
-        pool.pool2.close();
+        pool.unete.close();
         if(draw){
             var registros= parseInt(start)+parseInt(length);
             var total_filtered = result.recordsets[0].length;

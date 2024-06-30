@@ -24,7 +24,7 @@ export const getCombos = async (req, res) => {
     }
 }
 
-export const getRptSeguimientoCursos_1 = async (req, res) => {
+export const getSeguimientoCurso_1 = async (req, res) => {
     try {
         //getConnection();
         const {visu, tipo_rpt, nivel, nro_cap, nro_aula, exam, cod_sede, cod_cargo} = req.params;
@@ -39,8 +39,8 @@ export const getRptSeguimientoCursos_1 = async (req, res) => {
             .input('EXAM', exam)
             .input('COD_SEDE', cod_sede)
             .input('COD_CARGO', cod_cargo)
-            .execute(`[CAPA].[USP_CAPACITACION_RPT_SEGUIMIENTO_CURSOS_1]`);
-        //console.log(pool);  
+            .execute(`[CAPA].[USP_CAPACITACION_DESARROLLO_CURSO_1]`);
+        console.log(pool);  
         res.json(result.recordsets[0]);
         //pool.close();
     } catch (error) {

@@ -23,8 +23,7 @@ export const getCombos = async (req, res) => {
         res.send(error.message);
     }
 }
-
-export const getSeguimientoCurso_1 = async (req, res) => {
+export const getRptSeguimientoCursos = async (req, res) => {
     try {
         //getConnection();
         const {visu, tipo_rpt, nivel, nro_cap, nro_aula, exam, cod_sede, cod_cargo} = req.params;
@@ -39,32 +38,7 @@ export const getSeguimientoCurso_1 = async (req, res) => {
             .input('EXAM', exam)
             .input('COD_SEDE', cod_sede)
             .input('COD_CARGO', cod_cargo)
-            .execute(`[CAPA].[USP_CAPACITACION_DESARROLLO_CURSO_1]`);
-        console.log(pool);  
-        res.json(result.recordsets[0]);
-        //pool.close();
-    } catch (error) {
-        res.status(500)
-        res.send(error.message);
-    }
-}
-
-export const getRptSeguimientoCursos_2 = async (req, res) => {
-    try {
-        //getConnection();
-        const {visu, tipo_rpt, nivel, nro_cap, nro_aula, exam, cod_sede, cod_cargo} = req.params;
-        const pool = await getConnection();
-        const result = await pool.pool
-            .request()
-            .input('VISU', visu)
-            .input('TIPO_RPT', tipo_rpt)
-            .input('COD_NIVEL', nivel)
-            .input('NRO_CAP', nro_cap)
-            .input('NRO_AULA', nro_aula)
-            .input('EXAM', exam)
-            .input('COD_SEDE', cod_sede)
-            .input('COD_CARGO', cod_cargo)
-            .execute(`[CAPA].[USP_CAPACITACION_RPT_SEGUIMIENTO_CURSOS_2]`);
+            .execute(`[CAPA].[USP_CAPACITACION_RPT_SEGUIMIENTO_CURSOS]`);
         //console.log(pool);  
         res.json(result.recordsets[0]);
         //pool.close();

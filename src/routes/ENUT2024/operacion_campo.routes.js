@@ -7,7 +7,8 @@ const router = Router()
 /****************************************************************************************************************************************************************************************************************/
 /* INDICADORES DE COBERTURA */
 /* COMBOS */
-router.get('/ENUT2024/operacion_campo/indicadores_cobertura/cobertura_incompleta/:tipo_rpt/:mes/:periodo/:area', operacion_controller.getCoberturaIncompleta );
+router.get('/ENUT2024/operacion_campo/indicadores_cobertura/combos/:combo', operacion_controller.getCombos );
+router.get('/ENUT2024/operacion_campo/indicadores_cobertura/cobertura_incompleta/:tiporeporte/:mes/:periodo/:area', operacion_controller.getCoberturaIncompleta );
 
 
 export default router

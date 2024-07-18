@@ -28,6 +28,25 @@ export const getCoberturaIncompleta = async  ( req , res ) => {
     } 
 }
 
+export const getCombos = async  ( req , res ) => {
+    try {
+        //getConnection();
+        const {combo} = req.params;    
+        const pool = await getConnection();
+        const result = await pool.pool 
+        .request() 
+        .input('COMBO', combo)      
+
+      
+        .execute(`[CAPT].[USP_ENC_ENUT_COMBOS]`);  
+        res.json(result.recordsets[0]);   
+        //pool.close();
+    } catch (error) {
+        res.status(500)
+        res.send(error.message);
+    } 
+}
+
 
 
 

@@ -5,6 +5,7 @@ import config from './config'
 /*** CAPACITACIÓN ***/
 import capacitacion_routes from './routes/ENUT2024/capacitacion.routes'
 import reclutamiento_routes from './routes/ENUT2024/reclutamiento.routes'
+import operacion_campo_routes from './routes/ENUT2024/operacion_campo.routes'
 
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(express.json())
 /*** CAPACITACIÓN ***/
 app.use(capacitacion_routes)
 app.use(reclutamiento_routes)
+app.use(operacion_campo_routes)
 
 
 export default app

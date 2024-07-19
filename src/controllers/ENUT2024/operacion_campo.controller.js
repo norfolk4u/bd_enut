@@ -9,7 +9,7 @@ import { getConnection } from "../../database";
 export const getCoberturaIncompleta = async  ( req , res ) => {
     try {
         //getConnection();
-        const {tiporeporte,mes,periodo,area } = req.params;    
+        const {tiporeporte,mes,periodo,area,cod1 } = req.params;    
         const pool = await getConnection();
         const result = await pool.pool 
         .request() 
@@ -17,6 +17,7 @@ export const getCoberturaIncompleta = async  ( req , res ) => {
         .input('MES', mes)
         .input('PERIODO',periodo)
         .input('AREA', area)
+        .input('COD1', cod1)
 
       
         .execute(`[CAPT].[USP_COBERTURA_INCOMPLETAS]`);  

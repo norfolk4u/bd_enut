@@ -5,7 +5,7 @@ import { getConnection } from "../../database";
 
 /** COMBOS**/
 
-/*COBERTURA INCOMPLETA */
+/*COBERTURA DE LA ENCUESTA*/
 export const getCoberturaIncompleta = async  ( req , res ) => {
     try {
         //getConnection();
@@ -21,6 +21,30 @@ export const getCoberturaIncompleta = async  ( req , res ) => {
 
       
         .execute(`[CAPT].[USP_COBERTURA_INCOMPLETAS]`);  
+        res.json(result.recordsets[0]);   
+        //pool.close();
+    } catch (error) {
+        res.status(500)
+        res.send(error.message);
+    } 
+}
+
+/*COBERTURA DE LA TAREAS REALIZADAS EN EL HOGAR (CAP600) */
+export const getCoberturaHogar = async  ( req , res ) => {
+    try {
+        //getConnection();
+        const {tiporeporte,mes,periodo,area,cod1 } = req.params;    
+        const pool = await getConnection();
+        const result = await pool.pool 
+        .request() 
+        .input('TIPO_RPT', tiporeporte)
+        .input('MES', mes)
+        .input('PERIODO',periodo)
+        .input('AREA', area)
+        .input('COD1', cod1)
+
+      
+        .execute(`[CAPT].[USP_COBERTURA_CAP600]`);  
         res.json(result.recordsets[0]);   
         //pool.close();
     } catch (error) {

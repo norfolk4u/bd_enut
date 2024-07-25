@@ -52,7 +52,28 @@ export const getCoberturaHogar = async  ( req , res ) => {
         res.send(error.message);
     } 
 }
+export const getCoberturaEmpleo = async  ( req , res ) => {
+    try {
+        //getConnection();
+        const {tiporeporte,mes,periodo,area,cod1 } = req.params;    
+        const pool = await getConnection();
+        const result = await pool.pool 
+        .request() 
+        .input('TIPO_RPT', tiporeporte)
+        .input('MES', mes)
+        .input('PERIODO',periodo)
+        .input('AREA', area)
+        .input('COD1', cod1)
 
+      
+        .execute(`[CAPT].[USP_COBERTURA_CAP700]`);  
+        res.json(result.recordsets[0]);   
+        //pool.close();
+    } catch (error) {
+        res.status(500)
+        res.send(error.message);
+    } 
+}
 export const getCombos = async  ( req , res ) => {
     try {
         //getConnection();

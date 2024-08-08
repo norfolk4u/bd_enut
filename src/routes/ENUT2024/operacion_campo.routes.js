@@ -12,5 +12,11 @@ router.get('/ENUT2024/operacion_campo/indicadores_cobertura/cobertura_incompleta
 router.get('/ENUT2024/operacion_campo/indicadores_cobertura/cobertura_hogar/:tiporeporte/:mes/:periodo/:area/:cod1', operacion_controller.getCoberturaHogar );
 router.get('/ENUT2024/operacion_campo/indicadores_cobertura/cobertura_empleo/:tiporeporte/:mes/:periodo/:area/:cod1', operacion_controller.getCoberturaEmpleo );
 
+/* INDICADORES DE CALIDAD */
+router.get('/ENUT2024/operacion_campo/indicadores_calidad/porcentaje_actividades/:tiporeporte/:mes/:periodo/:area/:cod1', operacion_controller.getCapturaPorcentajeActividades);
+router.get('/ENUT2024/operacion_campo/indicadores_calidad/porcentaje_residentes/:tiporeporte/:mes/:periodo/:area/:cod1', operacion_controller.getCapturaPorcentajeResidentes);
+
+
+
 
 export default router

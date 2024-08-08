@@ -93,8 +93,6 @@ export const getCombos = async  ( req , res ) => {
     } 
 }
 
-
-
 /**************************************************** INDICADORES DE CALIDAD *************************************************************/
 
 export const getCapturaPorcentajeActividades = async  ( req , res ) => {

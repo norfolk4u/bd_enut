@@ -17,6 +17,9 @@ router.get('/ENUT2024/operacion_campo/indicadores_calidad/porcentaje_actividades
 router.get('/ENUT2024/operacion_campo/indicadores_calidad/porcentaje_residentes/:tiporeporte/:mes/:periodo/:area/:cod1', operacion_controller.getCapturaPorcentajeResidentes);
 
 
-
+/*GEOLOCALIZACIÓN DEL PERSONAL DE CAMPO*/
+router.get('/ENUT2024/operacion_campo/geotracking/resumen/:odei/:usuario/:cargo/:fecha', operacion_controller.getGeotrackingResumen);
+router.get('/ENUT2024/operacion_campo/geotracking/:usuario/:fecha', operacion_controller.getGeotracking);
+router.get('/ENUT2024/operacion_campo/geotracking/combos/:combos/:cargo', operacion_controller.getGeotrackingCombos); 
 
 export default router

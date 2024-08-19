@@ -143,6 +143,69 @@ export const getCapturaPorcentajeResidentes = async  ( req , res ) => {
 
 
 
+/*********************************************************GEOTRACKING *******************************************************/
+export const getGeotrackingResumen = async  ( req , res ) => {
+    try {
+        //getConnection();
+        const {odei, usuario,cargo, fecha } = req.params;    
+        const pool = await getConnection();
+        const result = await pool.pool 
+        .request() 
+        .input('ODEI', odei)
+        .input('USUARIO', usuario)
+        .input('CARGO', cargo)
+        .input('FECHA', fecha)
+  
+      
+        .execute(`[CAPT].[USP_ENCUESTADOR_GEOlOCALIZACION_RESUMEN]`);  
+        res.json(result.recordsets[0]);   
+        //pool.close();
+    } catch (error) {
+        res.status(500)
+        res.send(error.message);
+    } 
+}
+
+export const getGeotracking = async  ( req , res ) => {
+    try {
+        //getConnection();
+        const { usuario, fecha } = req.params;    
+        const pool = await getConnection();
+        const result = await pool.pool 
+        .request() 
+        .input('USUARIO', usuario)
+        .input('FECHA', fecha)
+  
+      
+        .execute(`[CAPT].[USP_ENCUESTADOR_GEOLOCALIZACION]`);  
+        res.json(result.recordsets[0]);   
+        //pool.close();
+    } catch (error) {
+        res.status(500)
+        res.send(error.message);
+    } 
+}
+export const getGeotrackingCombos = async  ( req , res ) => {
+    try {
+        //getConnection();
+        const { combos, cargo } = req.params;    
+        const pool = await getConnection();
+        const result = await pool.pool 
+        .request() 
+        .input('COMBO', combos)
+        .input('CARGO', cargo)
+  
+      
+        .execute(`[CAPT].[USP_GEORREFERENCIACION_COMBOS]`);  
+        res.json(result.recordsets[0]);   
+        //pool.close();
+    } catch (error) {
+        res.status(500)
+        res.send(error.message);
+    } 
+}
+
+
 
 
 

@@ -93,6 +93,25 @@ export const getCombos = async  ( req , res ) => {
     } 
 }
 
+/*-- RENX --*/
+export const getCombo_seguimiento_muestra = async  ( req , res ) => {
+    try {
+        //getConnection();
+        const { tipo_combo } = req.params;    
+        const pool = await getConnection();
+        const result = await pool.pool 
+        .request() 
+        .input('TIPO_COMBO', tipo_combo)
+        .execute(`SP_COMBOS_MUESTREO_SEGUIMIENTO`);  
+        res.json(result.recordsets[0]);   
+        //pool.close();
+    } catch (error) {
+        res.status(500)
+        res.send(error.message);
+    } 
+}
+
+
 /**************************************************** INDICADORES DE CALIDAD *************************************************************/
 
 export const getCapturaPorcentajeActividades = async  ( req , res ) => {
@@ -141,6 +160,24 @@ export const getCapturaPorcentajeResidentes = async  ( req , res ) => {
     } 
 }
 
+/*-- RENX --*/
+export const getMuestreoSeguimientoMuestra = async  ( req , res ) => {
+    try {
+        //getConnection();
+        const { tipo_reporte, nivel } = req.params;    
+        const pool = await getConnection();
+        const result = await pool.pool 
+        .request() 
+        .input('TIPO_REPORTE', tipo_reporte)
+        .input('NIVEL', nivel)        
+        .execute(`SP_SEGUIMIENTO_MUESTRA`);  
+        res.json(result.recordsets[0]);   
+        //pool.close();
+    } catch (error) {
+        res.status(500)
+        res.send(error.message);
+    } 
+}
 
 
 /*********************************************************GEOTRACKING *******************************************************/

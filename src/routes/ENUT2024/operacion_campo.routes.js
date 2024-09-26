@@ -22,7 +22,8 @@ router.get('/ENUT2024/operacion_campo/geotracking/resumen/:odei/:usuario/:cargo/
 router.get('/ENUT2024/operacion_campo/geotracking/:usuario/:fecha', operacion_controller.getGeotracking);
 router.get('/ENUT2024/operacion_campo/geotracking/combos/:combos/:cargo', operacion_controller.getGeotrackingCombos); 
 
-
+router.get('/ENUT2024/muestreo/seguimiento_muestra/:tipo_reporte/:nivel', operacion_controller.getMuestreoSeguimientoMuestra); 
+router.get('/ENUT2024/muestreo/combo_seguimiento_muestra/:tipo_combo', operacion_controller.getCombo_seguimiento_muestra);
 /*Geo */
 
 export default router

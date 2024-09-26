@@ -36,20 +36,25 @@ const dbSettings_Unete = {
 export async function getConnection() {
     try {
         const pool = new sql.ConnectionPool(dbSettings);
-        const unete = new sql.ConnectionPool(dbSettings_Unete);
+        //const unete = new sql.ConnectionPool(dbSettings_Unete);
 
         await pool.connect(dbSettings);
-        await unete.connect(dbSettings_Unete);
+        //await unete.connect(dbSettings_Unete);
 
         const output = {
             "pool": pool,
-            "unete": unete,
+           // "unete": unete,
         };
         return output;
     } catch (error) {
         console.log(error);
     }
 }
+ 
+
+
+
+
 
 getConnection();
 

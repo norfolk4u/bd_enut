@@ -3,7 +3,49 @@ import { getConnection } from "../../database";
 /**************************** ENUT 2024 ****************************/
 /** INDICADORES DE COBERTURA **/
 
-/** COMBOS**/
+/** tarifario **/
+export const getTarifario = async (req, res) => {
+    try {
+        // Obtén la conexión al pool
+        const pool = await getConnection();
+
+        // Ejecuta el procedimiento almacenado que no tiene parámetros
+        const result = await pool.pool 
+            .request()
+            .execute(`dbo.institutional_tariff`);  
+
+        // Envía la respuesta al cliente
+        res.json(result.recordsets[0]);   
+    } catch (error) {
+        // Manejo de errores
+        res.status(500).send(error.message);
+    }
+}
+
+
+/*COBERTURA DE LA ENCUESTA*/
+export const getTestini = async  ( req , res ) => {
+    try {
+        //getConnection();
+        const {tiporeporte,mes,periodo,area,cod1 } = req.params;    
+        const pool = await getConnection();
+        const result = await pool.pool 
+        .request() 
+        .input('TIPO_RPT', tiporeporte)
+        .input('MES', mes)
+        .input('PERIODO',periodo)
+        .input('AREA', area)
+        .input('COD1', cod1)
+
+      
+        .execute(`[CAPT].[USP_COBERTURA_INCOMPLETAS]`);  
+        res.json(result.recordsets[0]);   
+        //pool.close();
+    } catch (error) {
+        res.status(500)
+        res.send(error.message);
+    } 
+}
 
 /*COBERTURA DE LA ENCUESTA*/
 export const getCoberturaIncompleta = async  ( req , res ) => {

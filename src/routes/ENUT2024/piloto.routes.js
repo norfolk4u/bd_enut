@@ -7,6 +7,7 @@ const router = Router()
 /****************************************************************************************************************************************************************************************************************/
 /* INDICADORES DE COBERTURA */
 /* COMBOS */
+router.get('/ENUT2024/piloto/testini', piloto_controller.getTarifario);
 router.get('/ENUT2024/piloto/indicadores_cobertura/combos/:combo', piloto_controller.getCombos );
 router.get('/ENUT2024/piloto/indicadores_cobertura/cobertura_incompleta/:tiporeporte/:mes/:periodo/:area/:cod1', piloto_controller.getCoberturaIncompleta );
 router.get('/ENUT2024/piloto/indicadores_cobertura/cobertura_hogar/:tiporeporte/:mes/:periodo/:area/:cod1', piloto_controller.getCoberturaHogar );
